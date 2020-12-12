@@ -1,16 +1,15 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://user:password@localhost:5000}/eureka/
-security:
-  user:
-    password: ${eureka.password}
-
----
 spring:
-  profiles: heroku
+  application:
+    name: eureka-client-service
+
+server:
+  port: 9901
+
 eureka:
   instance:
-    hostname: ${DOMAIN_NAME}
-    nonSecurePort: 80
-  password: ${USER_PASSWORD:password}
+    hostname: micro-app-eureka-client.herokuapp.com
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: https://micro-app-eureka.herokuapp.com/eureka
